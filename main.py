@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 # libraries for making count matrix and similarity matrix
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -55,17 +55,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    return jsonify({'data': 'Please use the /recommend endpoint to get recommendations'})
 
-@app.route("/recommend")
-def recommend():
-    movie = request.args.get('movie')
+@app.route("/recommend/<movie>")
+def recommend(movie):
     r = rcmd(movie)
     movie = movie.upper()
+    success = True
+    # If the movie is not found
     if type(r)==type('string'):
-        return render_template('recommend.html',movie=movie,r=r,t='s')
-    else:
-        return render_template('recommend.html',movie=movie,r=r,t='l')
+        success = False
+    return jsonify({'success': success, 'data': r})
 
 
 
