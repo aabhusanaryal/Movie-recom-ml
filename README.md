@@ -1,16 +1,11 @@
-# Movie-Recommender-System
-This is a hollywood movie recommender system built with Python. I used IMDB 5000 Movie Dataset to built this.
-Link to dataset :- https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset
+# Avana Internship - Task 3
 
-Link to the web application :- https://recommendor-system.herokuapp.com/
+## Hosting ML Model
 
-I also wrote a blog about this project which help you understand the overall process :- https://www.academyofdatascience.com/Blog_page/blog_3.html
+### Acknoledgements
 
-I used Flask web framework in built in Python to put in on web.
+The model was taken from https://github.com/dis-is-pj/Movie-Recommender-System and was converted into a REST API which is hosted at my own VPS: https://movie-recom.aabhusanaryal.com.np/recommend/
 
-# Files Brief
-*In the preprocessing.ipynb file the Data Preprocessing part has been done. 
+I also created a frontend in Vue that calls the API and retreived suggestion for movies based on a given movie.
 
-*In the create.py file I created two files for future uses one data.csv and other a numpy matrix.
-
-*The application is run from the main.py file.
+I also made the use of API from themoviedb.org to fetch more details about movies, such as it's ratings, excerpt, genres, etc.

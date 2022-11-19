@@ -70,6 +70,10 @@ def recommend(movie):
         success = False
     return jsonify({'success': success, 'data': r})
 
+@app.route("/recommend/")
+def recom():
+    return jsonify({'data': 'Please use the format /recommend/movie-name'})
+
 
 
 if __name__ == '__main__':
