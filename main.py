@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from flask_cors import CORS, cross_origin
 # libraries for making count matrix and similarity matrix
 from sklearn.feature_extraction.text import CountVectorizer
@@ -58,7 +58,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def home():
-    return jsonify({'data': 'Please use the /recommend endpoint to get recommendations'})
+    return send_from_directory('static/frontend', 'index.html')
 
 @app.route("/recommend/<movie>")
 def recommend(movie):
