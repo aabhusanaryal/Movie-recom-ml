@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS, cross_origin
 # libraries for making count matrix and similarity matrix
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -52,6 +53,8 @@ def rcmd(m):
         return l
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def home():
@@ -70,4 +73,4 @@ def recommend(movie):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=True)

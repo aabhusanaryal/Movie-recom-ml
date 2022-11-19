@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ML Powered Movie Recommendation System</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <nav class="container-fluid">
+        <ul>
+          <li><strong>ML Powered Movie Recommendation System</strong></li>
+        </ul>
+      </nav>
+      <main class="container">
+        <article>
+          {{message}}
+          <form @submit.prevent="submitForm">
+            <input type="text" v-model="movieName" />
+            <button type="submit" :aria-busy="isLoading">Submit</button>
+          </form>
+        </article>
+      </main>
+    </div>
+  </body>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          message: "Hello Vue!",
+          isLoading: false,
+          apiURL: "https://movie-recom.aabhusanaryal.com.np/recommend",
+          movieName: "",
+        };
+      },
+      methods: {
+        submitForm() {
+          this.isLoading = true;
+          let fetchURL = `${this.apiURL}/${this.movieName}`;
+          console.log(fetchURL);
+          fetch(fetchURL).then((res) => console.log(res));
+          // .then((data) => {
+          //   this.message = data;
+          // });
+        },
+      },
+    }).mount("#app");
+  </script>
+</html>
